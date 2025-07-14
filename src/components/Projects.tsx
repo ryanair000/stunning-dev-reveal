@@ -1,5 +1,4 @@
 
-import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { projects } from "@/data/projects";
 
@@ -62,13 +61,11 @@ const Projects = () => {
                 <div className="flex gap-3">
                   <Button variant="outline" size="sm" className="group/btn">
                     <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View code for ${project.title} on GitHub`}>
-                      <Github className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform" />
                       Code
                     </a>
                   </Button>
                   <Button size="sm" className="group/btn">
                     <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`}>
-                      <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform" />
                       Live Demo
                     </a>
                   </Button>
