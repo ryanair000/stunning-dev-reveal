@@ -5,32 +5,32 @@
 - [x] Update GitHub link to https://github.com/ryanair000
 - [x] Update email address to ryannyasimi@gmail.com
 - [ ] Update LinkedIn profile link
-- [ ] Replace placeholder project links with actual project repositories
+- [x] Replace placeholder project links with actual project repositories
 
 ## Performance Improvements
 - [ ] Optimize images using next-gen formats (WebP/AVIF)
-- [ ] Implement proper image dimensions to prevent layout shifts
-- [ ] Add loading="lazy" attribute to below-fold images
+- [x] Implement proper image dimensions to prevent layout shifts
+- [x] Add loading="lazy" attribute to below-fold images
 - [ ] Consider using responsive images with srcset
 - [ ] Minify assets during build process
 
 ## SEO Enhancements
-- [ ] Add proper meta title and description in index.html
-- [ ] Implement Open Graph tags for better social sharing
-- [ ] Add structured data (JSON-LD) for better search results
-- [ ] Create robots.txt and sitemap.xml
+- [x] Add proper meta title and description in index.html
+- [x] Implement Open Graph tags for better social sharing
+- [x] Add structured data (JSON-LD) for better search results
+- [x] Create robots.txt and sitemap.xml
 - [ ] Improve heading hierarchy and semantic structure
 
 ## Accessibility Improvements
-- [ ] Add proper aria-labels to icon-only buttons
+- [x] Add proper aria-labels to icon-only buttons
 - [ ] Ensure sufficient color contrast ratios
-- [ ] Add descriptive alt text for all images
+- [x] Add descriptive alt text for all images
 - [ ] Implement keyboard navigation enhancements
 - [ ] Test with screen readers and make necessary adjustments
 
 ## Code Improvements
-- [ ] Move project data to a separate data file
-- [ ] Add TypeScript interfaces for all data structures
+- [x] Move project data to a separate data file
+- [x] Add TypeScript interfaces for all data structures
 - [ ] Create reusable components for repetitive UI elements
 - [ ] Use environment variables for contact information
 - [ ] Implement proper error handling and error boundaries

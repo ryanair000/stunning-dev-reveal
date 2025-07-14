@@ -1,38 +1,9 @@
 
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { projects } from "@/data/projects";
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description: "Full-stack solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
-      year: "2024",
-      tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d",
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "Task Management App",
-      description: "Collaborative tool with real-time updates using Socket.io. Includes drag-and-drop functionality and team collaboration features.",
-      year: "2023",
-      tech: ["React", "Socket.io", "MongoDB", "Express"],
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71",
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "Weather Dashboard",
-      description: "Location-based forecasts and analytics with beautiful data visualizations and responsive design for all devices.",
-      year: "2023",
-      tech: ["Next.js", "TypeScript", "Chart.js", "API"],
-      image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b",
-      github: "#",
-      live: "#"
-    }
-  ];
-
   return (
     <section id="projects" className="py-24 lg:py-32 bg-background">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -55,7 +26,10 @@ const Projects = () => {
               <div className="aspect-video bg-muted/50 overflow-hidden">
                 <img 
                   src={project.image} 
-                  alt={project.title}
+                  alt={`Screenshot of ${project.title} project`}
+                  width={640}
+                  height={360}
+                  loading={index > 0 ? "lazy" : "eager"}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
@@ -87,12 +61,16 @@ const Projects = () => {
                 
                 <div className="flex gap-3">
                   <Button variant="outline" size="sm" className="group/btn">
-                    <Github className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform" />
-                    Code
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View code for ${project.title} on GitHub`}>
+                      <Github className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform" />
+                      Code
+                    </a>
                   </Button>
                   <Button size="sm" className="group/btn">
-                    <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform" />
-                    Live Demo
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`}>
+                      <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform" />
+                      Live Demo
+                    </a>
                   </Button>
                 </div>
               </div>
