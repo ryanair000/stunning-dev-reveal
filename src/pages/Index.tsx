@@ -7,13 +7,11 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 import ScrollProgress from "@/components/ScrollProgress";
-import SkipNavigation from "@/components/SkipNavigation";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SkipNavigation />
       <ScrollProgress />
       <Navigation />
       
