@@ -16,24 +16,24 @@ const Contact = () => {
           
           <div className="flex justify-center items-center space-x-6 mb-12">
             <Button variant="outline" size="icon" className="hover:scale-110 transition-transform">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/ryanair000" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
                 <Github size={20} />
               </a>
             </Button>
             <Button variant="outline" size="icon" className="hover:scale-110 transition-transform">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
                 <Linkedin size={20} />
               </a>
             </Button>
             <Button variant="outline" size="icon" className="hover:scale-110 transition-transform">
-              <a href="mailto:hello@developer.com">
+              <a href="mailto:ryannyasimi@gmail.com" aria-label="Email Me">
                 <Mail size={20} />
               </a>
             </Button>
           </div>
 
           <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href="mailto:hello@developer.com">Get In Touch</a>
+            <a href="mailto:ryannyasimi@gmail.com">Get In Touch</a>
           </Button>
         </div>
       </div>
