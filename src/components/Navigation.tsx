@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,17 +18,22 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Work", href: "#projects" },
-    { name: "Contact", href: "#contact" }
+    { name: "About", href: "/#about" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Work", href: "/#projects" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/#contact" }
   ];
 
   const scrollToSection = (href: string) => {
-    const sectionId = href.replace('#', '');
-    const element = document.getElementById(sectionId === "work" ? "projects" : sectionId);
-    element?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
+    // If it's a hash link on the home page
+    if (href.startsWith('/#')) {
+      const sectionId = href.replace('/#', '');
+      const element = document.getElementById(sectionId === "work" ? "projects" : sectionId);
+      element?.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
+    // Otherwise, regular navigation will happen through the Link component
   };
 
   return (
@@ -38,21 +45,25 @@ const Navigation = () => {
       }`}>
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex justify-between items-center h-20">
-            <div className="text-2xl font-bold text-foreground">
+            <Link to="/" className="text-2xl font-bold text-foreground">
               RA
-            </div>
+            </Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group"
+                  to={item.href}
+                  onClick={item.href.startsWith('/#') ? () => scrollToSection(item.href) : undefined}
+                  className={`text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium relative group ${
+                    (location.pathname === '/' && item.href.includes(location.hash)) || 
+                    (location.pathname === item.href) ? 'text-foreground' : ''
+                  }`}
                 >
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                </button>
+                </Link>
               ))}
               <Button variant="outline" size="sm">
                 <a href="mailto:ryannyasimi@gmail.com">Hire Me</a>
@@ -79,13 +90,14 @@ const Navigation = () => {
           <div className="fixed top-20 left-0 right-0 bg-background border-b border-border/50 p-6">
             <div className="space-y-4">
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
+                  to={item.href}
+                  onClick={item.href.startsWith('/#') ? () => scrollToSection(item.href) : () => setIsMobileMenuOpen(false)}
                   className="block w-full text-left text-lg font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {item.name}
-                </button>
+                </Link>
               ))}
               <div className="pt-4">
                 <Button className="w-full">
