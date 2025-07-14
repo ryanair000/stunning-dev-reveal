@@ -39,7 +39,7 @@ const Navigation = () => {
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex justify-between items-center h-20">
             <div className="text-2xl font-bold text-foreground">
-              JD
+              RA
             </div>
             
             {/* Desktop Navigation */}
@@ -55,7 +55,7 @@ const Navigation = () => {
                 </button>
               ))}
               <Button variant="outline" size="sm">
-                <a href="mailto:hello@developer.com">Hire Me</a>
+                <a href="mailto:ryannyasimi@gmail.com">Hire Me</a>
               </Button>
             </div>
 
@@ -89,7 +89,7 @@ const Navigation = () => {
               ))}
               <div className="pt-4">
                 <Button className="w-full">
-                  <a href="mailto:hello@developer.com">Hire Me</a>
+                  <a href="mailto:ryannyasimi@gmail.com">Hire Me</a>
                 </Button>
               </div>
             </div>
