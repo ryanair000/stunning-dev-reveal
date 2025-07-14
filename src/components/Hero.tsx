@@ -9,36 +9,63 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-white relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted/20 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <div className="text-center animate-fade-in">
-          <h1 className="text-6xl md:text-8xl font-light text-gray-900 mb-8 leading-tight">
-            John Developer
-          </h1>
+          <div className="mb-8">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-6 leading-tight tracking-tight">
+              John <span className="text-primary">Developer</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-light">
+              Full-Stack Web Developer
+            </p>
+            
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Crafting beautiful, functional digital experiences with modern technologies
+            </p>
+          </div>
           
-          <p className="text-xl text-gray-500 mb-16 font-light">
-            Full-Stack Web Developer
-          </p>
-          
-          <div className="flex justify-center space-x-8 mb-20">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors duration-300">
-              <Github size={24} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-900 transition-colors duration-300">
-              <Linkedin size={24} />
-            </a>
-            <a href="mailto:hello@developer.com" className="text-gray-400 hover:text-gray-900 transition-colors duration-300">
-              <Mail size={24} />
-            </a>
+          <div className="flex justify-center items-center space-x-6 mb-12">
+            <Button variant="outline" size="icon" className="hover:scale-110 transition-transform">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <Github size={20} />
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" className="hover:scale-110 transition-transform">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Linkedin size={20} />
+              </a>
+            </Button>
+            <Button variant="outline" size="icon" className="hover:scale-110 transition-transform">
+              <a href="mailto:hello@developer.com">
+                <Mail size={20} />
+              </a>
+            </Button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button onClick={scrollToAbout} size="lg" className="group">
+              View My Work
+              <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            </Button>
+            <Button variant="outline" size="lg">
+              <a href="mailto:hello@developer.com">Get In Touch</a>
+            </Button>
           </div>
         </div>
       </div>
       
       <button 
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hover:scale-110 transition-transform"
       >
-        <ArrowDown className="text-gray-300 hover:text-gray-600 transition-colors duration-300" size={24} />
+        <ArrowDown className="text-muted-foreground hover:text-foreground transition-colors" size={24} />
       </button>
     </section>
   );
