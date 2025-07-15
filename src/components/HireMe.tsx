@@ -2,6 +2,67 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 
+interface Service {
+  title: string;
+  tagline: string;
+  price: string;
+  bullets: string[];
+  highlight?: boolean;
+  cta?: string;
+}
+
+const services: Service[] = [
+  {
+    title: "Web Development",
+    tagline: "Custom websites & web apps built with cutting-edge tech",
+    price: "Ksh 50,000 – 300,000",
+    bullets: ["Responsive Design", "Modern Frameworks", "SEO Optimized"],
+    highlight: true,
+  },
+  {
+    title: "Mobile App Development",
+    tagline: "Native & cross-platform mobile apps for iOS & Android",
+    price: "Ksh 150,000 – 1,000,000",
+    bullets: ["Cross-Platform", "Native Performance", "App Store Ready"],
+  },
+  {
+    title: "Software Development",
+    tagline: "Custom software solutions tailored to your business",
+    price: "Ksh 200,000 – 1,500,000",
+    bullets: ["Custom Solutions", "Scalable Architecture", "Ongoing Support"],
+  },
+  {
+    title: "Web Hosting",
+    tagline: "Reliable & secure hosting with 99.9% uptime",
+    price: "Ksh 10,000 – 100,000 / yr",
+    bullets: ["SSL Certificates", "24/7 Support", "Fast Loading"],
+  },
+  {
+    title: "Bulk SMS",
+    tagline: "Reach your customers instantly with bulk SMS",
+    price: "From Ksh 0.7 per SMS",
+    bullets: ["High Delivery Rate", "Instant Delivery", "Cost Effective"],
+  },
+  {
+    title: "Digital Marketing",
+    tagline: "Comprehensive digital marketing to grow your business",
+    price: "Ksh 30,000 – 300,000 / mo",
+    bullets: ["SEO/SEM", "Social Media", "Content Marketing"],
+  },
+  {
+    title: "Graphic Design",
+    tagline: "Professional graphic design for all branding needs",
+    price: "Ksh 5,000 – 50,000",
+    bullets: ["Brand Identity", "Print Design", "Digital Assets"],
+  },
+  {
+    title: "AI Chatbot Assistants",
+    tagline: "Intelligent chatbots to enhance customer engagement",
+    price: "Ksh 80,000 – 500,000",
+    bullets: ["24/7 Availability", "Natural Language", "Custom Training"],
+  },
+];
+
 const HireMe = () => {
   return (
     <section id="hire-me" className="py-24 lg:py-32 bg-muted/30">
@@ -16,8 +77,45 @@ const HireMe = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* Basic Package */}
+        {/* Services */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
+          {services.map((service, index) => (
+            <div
+              key={service.title}
+              className={`bg-card rounded-xl p-8 border ${service.highlight ? 'border-primary shadow-md' : 'border-border/50 shadow-sm hover:shadow-md'} transition-all duration-300 relative animate-fade-in`}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              {service.highlight && (
+                <div className="absolute -top-3 right-8 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                  Popular
+                </div>
+              )}
+
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
+                <p className="text-muted-foreground mb-4">{service.tagline}</p>
+                <div className="text-2xl font-bold text-foreground">{service.price}</div>
+              </div>
+
+              <ul className="space-y-3 mb-6 flex-grow">
+                {service.bullets.map((feature) => (
+                  <li key={feature} className="flex items-start">
+                    <Check className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link to="/#contact">
+                <Button className="w-full">
+                  {service.cta ?? 'Learn More'}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          ))}
+        </div>
+          {/*
           <div className="bg-card rounded-xl p-8 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in">
             <div className="mb-6">
               <h3 className="text-xl font-bold text-foreground mb-2">Website Development</h3>
@@ -27,7 +125,7 @@ const HireMe = () => {
               </div>
             </div>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-6 flex-grow">
               {[
                 "Responsive design",
                 "SEO optimization",
@@ -50,7 +148,7 @@ const HireMe = () => {
             </Link>
           </div>
           
-          {/* Standard Package */}
+          
           <div className="bg-card rounded-xl p-8 border border-primary shadow-md relative animate-fade-in" style={{ animationDelay: "100ms" }}>
             <div className="absolute -top-3 right-8 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
               Popular
@@ -64,7 +162,7 @@ const HireMe = () => {
               </div>
             </div>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-6 flex-grow">
               {[
                 "Everything in Website Development",
                 "User authentication",
@@ -88,7 +186,7 @@ const HireMe = () => {
             </Link>
           </div>
           
-          {/* Premium Package */}
+          
           <div className="bg-card rounded-xl p-8 border border-border/50 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in" style={{ animationDelay: "200ms" }}>
             <div className="mb-6">
               <h3 className="text-xl font-bold text-foreground mb-2">Enterprise Solution</h3>
@@ -98,7 +196,7 @@ const HireMe = () => {
               </div>
             </div>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-6 flex-grow">
               {[
                 "Everything in Web Application",
                 "Scalable architecture",
@@ -124,6 +222,8 @@ const HireMe = () => {
           </div>
         </div>
         
+
+        */}
         <div className="bg-card rounded-xl p-8 border border-border/50 shadow-sm animate-fade-in">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
