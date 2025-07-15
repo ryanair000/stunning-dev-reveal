@@ -1,6 +1,7 @@
 
 import { Mail, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -37,9 +38,17 @@ const Contact = () => {
             </Button>
           </div>
 
-          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <a href="mailto:ryannyasimi@gmail.com">Get In Touch</a>
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <a href="mailto:ryannyasimi@gmail.com">Get In Touch</a>
+            </Button>
+            
+            <Link to="/quote">
+              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+                Get Free Quote
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

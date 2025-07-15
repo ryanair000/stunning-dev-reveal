@@ -22,6 +22,7 @@ const Navigation = () => {
     { name: "Skills", href: "/#skills" },
     { name: "Work", href: "/#projects" },
     { name: "Blog", href: "/blog" },
+    { name: "Hire Me", href: "/#hire-me" },
     { name: "Contact", href: "/#contact" }
   ];
 
@@ -65,9 +66,6 @@ const Navigation = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ))}
-              <Button variant="outline" size="sm">
-                <a href="mailto:ryannyasimi@gmail.com">Hire Me</a>
-              </Button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -99,11 +97,6 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-4">
-                <Button className="w-full">
-                  <a href="mailto:ryannyasimi@gmail.com">Hire Me</a>
-                </Button>
-              </div>
             </div>
           </div>
         </div>

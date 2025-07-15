@@ -8,6 +8,7 @@ import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 import ScrollProgress from "@/components/ScrollProgress";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
+import HireMe from "@/components/HireMe";
 
 const Index = () => {
   return (
@@ -35,6 +36,12 @@ const Index = () => {
         <section id="projects" tabIndex={-1}>
           <Suspense fallback={<LoadingSkeleton type="projects" />}>
             <Projects />
+          </Suspense>
+        </section>
+        
+        <section id="hire-me" tabIndex={-1}>
+          <Suspense fallback={<LoadingSkeleton type="contact" />}>
+            <HireMe />
           </Suspense>
         </section>
         
