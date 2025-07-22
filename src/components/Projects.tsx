@@ -59,14 +59,33 @@ const Projects = () => {
                 </div>
                 
                 <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="group/btn">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View code for ${project.title} on GitHub`}>
-                      Code
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="group/btn border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-300"
+                    asChild
+                  >
+                    <a href={`/projects/${project.slug}`} aria-label={`Learn more about ${project.title} project`}>
+                      <span className="flex items-center gap-2">
+                        <svg className="w-4 h-4 group-hover/btn:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Learn More
+                      </span>
                     </a>
                   </Button>
-                  <Button size="sm" className="group/btn">
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`}>
-                      Live Demo
+                  <Button 
+                    size="sm" 
+                    className="group/btn bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
+                    asChild
+                  >
+                    <a href="/quote" aria-label={`Request code for project similar to ${project.title}`}>
+                      <span className="flex items-center gap-2">
+                        <svg className="w-4 h-4 group-hover/btn:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        Request Code
+                      </span>
                     </a>
                   </Button>
                 </div>
