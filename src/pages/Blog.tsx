@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import sanityClient, { urlFor } from "@/lib/sanity";
 
 interface BlogPost {
   id: string;
@@ -13,47 +16,37 @@ interface BlogPost {
   excerpt: string;
   date: string;
   tags: string[];
-  readTime: string;
   coverImage: string;
 }
 
-const blogPosts: BlogPost[] = [
-  {
-    id: "building-modern-web-apps",
-    title: "Building Modern Web Applications with React and TypeScript",
-    excerpt: "Learn how to create scalable and maintainable web applications using React and TypeScript with best practices and advanced patterns.",
-    date: "June 1, 2024",
-    tags: ["React", "TypeScript", "Web Development"],
-    readTime: "8 min read",
-    coverImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
-  },
-  {
-    id: "advanced-css-techniques",
-    title: "Advanced CSS Techniques for Modern Designs",
-    excerpt: "Explore modern CSS features like Grid, Flexbox, Custom Properties, and CSS animations to create stunning web designs.",
-    date: "May 15, 2024",
-    tags: ["CSS", "Web Design", "Frontend"],
-    readTime: "6 min read",
-    coverImage: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2"
-  },
-  {
-    id: "nodejs-microservices",
-    title: "Building Microservices with Node.js",
-    excerpt: "A comprehensive guide to architecting, developing, and deploying microservices using Node.js and modern backend technologies.",
-    date: "April 28, 2024",
-    tags: ["Node.js", "Microservices", "Backend"],
-    readTime: "10 min read",
-    coverImage: "https://images.unsplash.com/photo-1555099962-4199c345e5dd"
-  }
-];
+const fetchPosts = async (): Promise<BlogPost[]> => {
+  const query = `*[_type == "post"] | order(publishedAt desc) {
+    "id": slug.current,
+    title,
+    "excerpt": pt::text(excerpt),
+    "date": publishedAt,
+    tags,
+    "coverImage": mainImage.asset->url
+  }`;
+  return await sanityClient.fetch(query);
+};
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  
-  const filteredPosts = blogPosts.filter(post => 
+  const { data: blogPosts = [], isLoading, isError } = useQuery<BlogPost[]>({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+  });
+  if (isLoading) {
+    return <LoadingSpinner className="min-h-screen" />;
+  }
+  if (isError) {
+    return <div className="min-h-screen flex items-center justify-center">Failed to load blog posts.</div>;
+  }
+  const filteredPosts = (blogPosts ?? []).filter(post => 
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
     post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    (post.tags ?? []).some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
   );
   
   return (
@@ -84,12 +77,12 @@ const Blog = () => {
           
           {/* Blog posts */}
           <div className="grid gap-12">
-            {filteredPosts.length > 0 ? (
-              filteredPosts.map((post) => (
+            {(filteredPosts ?? []).length > 0 ? (
+              (filteredPosts ?? []).map((post) => (
                 <article key={post.id} className="grid md:grid-cols-[2fr_3fr] gap-8 items-start">
                   <Link to={`/blog/${post.id}`} className="block overflow-hidden rounded-lg">
                     <img 
-                      src={`${post.coverImage}?auto=format&fit=crop&w=600&h=400&q=80`} 
+                      src={post.coverImage ? urlFor(post.coverImage).width(600).height(400).url() : "https://via.placeholder.com/600x400?text=No+Image"} 
                       alt={post.title}
                       className="w-full h-full object-cover aspect-video hover:scale-105 transition-transform duration-300"
                       width={600}
@@ -101,8 +94,6 @@ const Blog = () => {
                   <div>
                     <div className="flex items-center space-x-2 mb-3">
                       <span className="text-sm text-muted-foreground">{post.date}</span>
-                      <span className="text-muted-foreground">•</span>
-                      <span className="text-sm text-muted-foreground">{post.readTime}</span>
                     </div>
                     
                     <Link to={`/blog/${post.id}`}>
@@ -114,7 +105,7 @@ const Blog = () => {
                     <p className="text-muted-foreground mb-5">{post.excerpt}</p>
                     
                     <div className="flex flex-wrap gap-2 mb-5">
-                      {post.tags.map(tag => (
+                      {(post.tags ?? []).map(tag => (
                         <span 
                           key={tag} 
                           className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full"

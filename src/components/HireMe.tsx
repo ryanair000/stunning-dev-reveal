@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Code, Smartphone, Server, Globe, MessageSquare, Megaphone, Palette, Bot } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Service {
@@ -7,6 +7,7 @@ interface Service {
   tagline: string;
   price: string;
   bullets: string[];
+  icon: React.ReactNode;
   highlight?: boolean;
   cta?: string;
 }
@@ -14,52 +15,60 @@ interface Service {
 const services: Service[] = [
   {
     title: "Web Development",
-    tagline: "Custom websites & web apps built with cutting-edge tech",
-    price: "Ksh 50,000 – 300,000",
+    tagline: "Custom websites & web apps",
+    price: "Ksh 50k – 300k",
     bullets: ["Responsive Design", "Modern Frameworks", "SEO Optimized"],
+    icon: <Code className="w-6 h-6 text-primary" />,
     highlight: true,
   },
   {
     title: "Mobile App Development",
-    tagline: "Native & cross-platform mobile apps for iOS & Android",
-    price: "Ksh 150,000 – 1,000,000",
+    tagline: "Native & cross-platform apps",
+    price: "Ksh 150k – 1M",
     bullets: ["Cross-Platform", "Native Performance", "App Store Ready"],
+    icon: <Smartphone className="w-6 h-6 text-primary" />,
   },
   {
     title: "Software Development",
-    tagline: "Custom software solutions tailored to your business",
-    price: "Ksh 200,000 – 1,500,000",
+    tagline: "Custom software solutions",
+    price: "Ksh 200k – 1.5M",
     bullets: ["Custom Solutions", "Scalable Architecture", "Ongoing Support"],
+    icon: <Server className="w-6 h-6 text-primary" />,
   },
   {
     title: "Web Hosting",
-    tagline: "Reliable & secure hosting with 99.9% uptime",
-    price: "Ksh 10,000 – 100,000 / yr",
-    bullets: ["SSL Certificates", "24/7 Support", "Fast Loading"],
+    tagline: "Reliable & secure hosting",
+    price: "Ksh 10k – 100k / yr",
+    bullets: ["99.9% Uptime", "24/7 Support", "Fast Loading"],
+    icon: <Globe className="w-6 h-6 text-primary" />,
   },
   {
     title: "Bulk SMS",
-    tagline: "Reach your customers instantly with bulk SMS",
-    price: "From Ksh 0.7 per SMS",
+    tagline: "Reach customers instantly",
+    price: "From Ksh 0.7/SMS",
     bullets: ["High Delivery Rate", "Instant Delivery", "Cost Effective"],
+    icon: <MessageSquare className="w-6 h-6 text-primary" />,
   },
   {
     title: "Digital Marketing",
-    tagline: "Comprehensive digital marketing to grow your business",
-    price: "Ksh 30,000 – 300,000 / mo",
+    tagline: "Grow your business online",
+    price: "Ksh 30k – 300k / mo",
     bullets: ["SEO/SEM", "Social Media", "Content Marketing"],
+    icon: <Megaphone className="w-6 h-6 text-primary" />,
   },
   {
     title: "Graphic Design",
-    tagline: "Professional graphic design for all branding needs",
-    price: "Ksh 5,000 – 50,000",
-    bullets: ["Brand Identity", "Print Design", "Digital Assets"],
+    tagline: "Professional branding design",
+    price: "Ksh 5k – 50k",
+    bullets: ["Brand Identity", "Print & Digital", "UI/UX Design"],
+    icon: <Palette className="w-6 h-6 text-primary" />,
   },
   {
     title: "AI Chatbot Assistants",
-    tagline: "Intelligent chatbots to enhance customer engagement",
-    price: "Ksh 80,000 – 500,000",
+    tagline: "Intelligent customer engagement",
+    price: "Ksh 80k – 500k",
     bullets: ["24/7 Availability", "Natural Language", "Custom Training"],
+    icon: <Bot className="w-6 h-6 text-primary" />,
   },
 ];
 
@@ -69,47 +78,53 @@ const HireMe = () => {
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Work With Me
+            My Services
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I'm currently available for freelance projects and full-time positions.
+            I offer a range of services to help you achieve your goals. 
             Here's how we can work together.
           </p>
         </div>
 
-        {/* Services */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
+        {/* Services Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`bg-card rounded-xl p-8 border ${service.highlight ? 'border-primary shadow-md' : 'border-border/50 shadow-sm hover:shadow-md'} transition-all duration-300 relative animate-fade-in`}
+              className={`bg-card rounded-2xl p-6 border flex flex-col ${service.highlight ? 'border-primary shadow-lg shadow-primary/10' : 'border-border/50 hover:border-border hover:shadow-lg'} transition-all duration-300 animate-fade-in`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {service.highlight && (
-                <div className="absolute -top-3 right-8 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                  Popular
+                <div className="absolute -top-3 right-6 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                  Most Popular
                 </div>
               )}
 
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
-                <p className="text-muted-foreground mb-4">{service.tagline}</p>
-                <div className="text-2xl font-bold text-foreground">{service.price}</div>
+              <div className="flex items-center mb-5">
+                <div className="p-3 bg-primary/10 rounded-xl mr-4">
+                  {service.icon}
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground">{service.tagline}</p>
+                </div>
               </div>
 
-              <ul className="space-y-3 mb-6 flex-grow">
+              <div className="text-3xl font-bold text-foreground mb-5">{service.price}</div>
+
+              <ul className="space-y-3 mb-8 flex-grow">
                 {service.bullets.map((feature) => (
                   <li key={feature} className="flex items-start">
-                    <Check className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                    <Check className="h-5 w-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                     <span className="text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <Link to="/#contact">
-                <Button className="w-full">
-                  {service.cta ?? 'Learn More'}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+              <Link to="/quote-form" state={{ service: service.title }} className="mt-auto">
+                <Button className="w-full group">
+                  {service.cta ?? 'Get a Quote'}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </div>

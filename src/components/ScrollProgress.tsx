@@ -16,11 +16,12 @@ const ScrollProgress = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-muted z-50" style={{ transform: 'translateZ(0)' }}>
+    <div className="fixed top-0 left-0 w-full h-1 bg-muted z-[100]" style={{ transform: 'translateZ(0)' }}>
       <div 
-        className="h-full bg-primary"
+        className="h-full"
         style={{ 
           width: `${scrollProgress}%`,
+          backgroundColor: 'black',
           transform: 'translateZ(0)',
           willChange: 'width'
         }}

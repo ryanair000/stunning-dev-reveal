@@ -3,12 +3,12 @@ import { Suspense } from "react";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Apps from "@/components/Apps";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Navigation from "@/components/Navigation";
 import ScrollProgress from "@/components/ScrollProgress";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
-import HireMe from "@/components/HireMe";
 
 const Index = () => {
   return (
@@ -32,6 +32,7 @@ const Index = () => {
             <Skills />
           </Suspense>
         </section>
+        <Apps />
         
         <section id="projects" tabIndex={-1}>
           <Suspense fallback={<LoadingSkeleton type="projects" />}>
@@ -39,11 +40,6 @@ const Index = () => {
           </Suspense>
         </section>
         
-        <section id="hire-me" tabIndex={-1}>
-          <Suspense fallback={<LoadingSkeleton type="contact" />}>
-            <HireMe />
-          </Suspense>
-        </section>
         
         <section id="contact" tabIndex={-1}>
           <Suspense fallback={<LoadingSkeleton type="contact" />}>

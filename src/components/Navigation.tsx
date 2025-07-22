@@ -22,7 +22,7 @@ const Navigation = () => {
     { name: "Skills", href: "/#skills" },
     { name: "Work", href: "/#projects" },
     { name: "Blog", href: "/blog" },
-    { name: "Hire Me", href: "/#hire-me" },
+    { name: "Hire Me", href: "/hire-me" },
     { name: "Contact", href: "/#contact" }
   ];
 
@@ -41,7 +41,7 @@ const Navigation = () => {
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50" 
+          ? "bg-background/95 border-b border-border/50 shadow-sm" 
           : "bg-transparent"
       }`}>
         <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
